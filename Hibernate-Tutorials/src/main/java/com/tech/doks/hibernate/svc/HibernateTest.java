@@ -15,7 +15,7 @@ public class HibernateTest {
 		UserDetails user = new UserDetails();
 		Vehicle vehical = new Vehicle();
 		Vehicle vehical2 = new Vehicle();
-		user.setUserName("DOK$");
+		user.setUserName("Dheeraj");
 		vehical.setVehicalName("Car");
 		vehical2.setVehicalName("Jeep");
 		user.getVehical().add(vehical);
