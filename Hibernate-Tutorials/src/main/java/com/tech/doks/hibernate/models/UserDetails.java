@@ -1,23 +1,28 @@
 package com.tech.doks.hibernate.models;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 
 @Entity (name ="User_Details" )
 public class UserDetails {
 	@Id
-	@GeneratedValue
+	@GeneratedValue (strategy=GenerationType.AUTO)
 	@Column (name = "User_Id")
 	private int userId;
 	@Column (name = "User_Name")
 	private String userName;
-	@OneToOne
-	@JoinColumn(name="Vehical_Id")
-	private Vehicle vehical;
+	@OneToMany
+	@JoinTable(name="User_Vehical", joinColumns=@JoinColumn(name="User_Id"), inverseJoinColumns=@JoinColumn(name="Vehical_Id"))
+	private Collection<Vehicle> vehical = new ArrayList<Vehicle>();
 	
 	public int getUserId() {
 		return userId;
@@ -31,10 +36,10 @@ public class UserDetails {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public Vehicle getVehical() {
+	public Collection<Vehicle> getVehical() {
 		return vehical;
 	}
-	public void setVehical(Vehicle vehical) {
+	public void setVehical(Collection<Vehicle> vehical) {
 		this.vehical = vehical;
 	}
 }
